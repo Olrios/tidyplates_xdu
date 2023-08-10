@@ -71,6 +71,7 @@ local UpdateStyle
 local UpdateIndicator_CustomScaleText, UpdateIndicator_Standard, UpdateIndicator_CustomAlpha
 local UpdateIndicator_Level, UpdateIndicator_ThreatGlow, UpdateIndicator_RaidIcon
 local UpdateIndicator_EliteIcon, UpdateIndicator_UnitColor, UpdateIndicator_Name
+local UpdateIndicator_RareIcon, UpdateIndicator_UnitColor, UpdateIndicator_Name
 local UpdateIndicator_HealthBar, UpdateIndicator_Target
 local OnUpdateCasting, OnStartCasting, OnStopCasting, OnUpdateCastMidway
 
@@ -205,6 +206,7 @@ do
 		-- Parented to Extended - Middle Frame
 		visual.raidicon = textFrame:CreateTexture(nil, "ARTWORK")
 		visual.eliteicon = textFrame:CreateTexture(nil, "OVERLAY")
+		visual.rareicon = textFrame:CreateTexture(nil, "OVERLAY")
 		visual.skullicon = textFrame:CreateTexture(nil, "OVERLAY")
 		visual.target = textFrame:CreateTexture(nil, "BACKGROUND")
 		-- TextFrame
@@ -485,7 +487,6 @@ do
 
 	local EliteReference = {
 		["elite"] = true,
-		["rareelite"] = true,
 		["worldboss"] = true,
 	}
 
@@ -692,6 +693,11 @@ do
 		if unit.isElite and style.eliteicon.show then visual.eliteicon:Show() else visual.eliteicon:Hide() end
 	end
 
+	function UpdateIndicator_RareIcon()
+		threatborder = visual.threatborder
+		if unit.isRare and style.rareicon.show then visual.rareicon:Show() else visual.rareicon:Hide() end
+	end
+
 
 	-- UpdateIndicator_UnitColor: Update the health bar coloring, if needed
 	function UpdateIndicator_UnitColor()
@@ -715,6 +721,7 @@ do
 			if unitcache.level ~= unit.level then UpdateIndicator_Level() end
 			UpdateIndicator_RaidIcon()
 			if unitcache.isElite ~= unit.isElite then UpdateIndicator_EliteIcon() end
+			if unitcache.isRare ~= unit.isRare then UpdateIndicator_RareIcon() end
 		end
 	end
 
@@ -1134,12 +1141,12 @@ do
 
 	local anchorgroup = {"healthborder", "threatborder", "castborder", "castnostop",
 						"name",  "spelltext", "customtext", "level",
-						"spellicon", "raidicon", "skullicon", "eliteicon", "target"}
+						"spellicon", "raidicon", "skullicon", "eliteicon", "rareicon", "target"}
 
 	local bargroup = {"castbar", "healthbar"}
 
 	local texturegroup = { "castborder", "castnostop", "healthborder", "threatborder", "eliteicon",
-						"skullicon", "highlight", "target", "spellicon", }
+					"rareicon", "skullicon", "highlight", "target", "spellicon", }
 
 
 	-- UpdateStyle:
@@ -1182,6 +1189,7 @@ do
 		end
 		-- Hide Stuff
 		if not unit.isElite then visual.eliteicon:Hide() end
+		if not unit.isRare then visual.rareicon:Hide() end
 		if not unit.isBoss then visual.skullicon:Hide() end
 
 		if not unit.isTarget then visual.target:Hide() end
