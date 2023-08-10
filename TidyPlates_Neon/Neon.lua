@@ -149,6 +149,16 @@ StyleDefault.eliteicon = {
 	anchor = "CENTER",
 	show = true,
 }
+
+StyleDefault.rareicon = {
+	texture = ArtworkPath.."Neon_EliteStar",
+	width = 23,
+	height = 23,
+	x = -44,
+	y = VerticalAdjustment + 6,
+	anchor = "CENTER",
+	show = true,
+}
 --]]
 
 --[[
@@ -290,6 +300,7 @@ StyleTextOnly.healthborder.texture = EmptyTexture
 StyleTextOnly.healthbar.texture = EmptyTexture
 StyleTextOnly.healthbar.backdrop = EmptyTexture
 StyleTextOnly.eliteicon.texture = EmptyTexture
+StyleTextOnly.rareicon.texture = EmptyTexture
 StyleTextOnly.customtext.size = fontsize - 2
 StyleTextOnly.customtext.flags = "NONE"
 StyleTextOnly.customtext.y = VerticalAdjustment-8
@@ -298,6 +309,7 @@ StyleTextOnly.name.y = VerticalAdjustment + 1
 StyleTextOnly.level.show = false
 StyleTextOnly.skullicon.show = false
 StyleTextOnly.eliteicon.show = false
+StyleTextOnly.rareicon.show = false
 StyleTextOnly.highlight.texture = "Interface\\Addons\\TidyPlatesHub\\shared\\Highlight"
 StyleTextOnly.target.texture = "Interface\\Addons\\TidyPlatesHub\\shared\\Target"
 StyleTextOnly.target.height = 72
